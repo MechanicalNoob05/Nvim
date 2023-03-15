@@ -49,4 +49,8 @@ return require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'}, -- Optional
 		}
 	}
+    -- Indent line
+    use "lukas-reineke/indent-blankline.nvim"
+    -- commenting
+    use 'preservim/nerdcommenter'
 end)

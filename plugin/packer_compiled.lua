@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/tejasm/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/tejasm/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/tejasm/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -128,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tejasm/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  nerdcommenter = {
+    loaded = true,
+    path = "/home/tejasm/.local/share/nvim/site/pack/packer/start/nerdcommenter",
+    url = "https://github.com/preservim/nerdcommenter"
   },
   ["nvim-cmp"] = {
     loaded = true,
