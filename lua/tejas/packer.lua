@@ -24,9 +24,7 @@ return require('packer').startup(function(use)
 	-- Tree sitter
 	use ('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
 	use 'tpope/vim-fugitive'
-
 	-- Lsp setup
-	
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v1.x',
