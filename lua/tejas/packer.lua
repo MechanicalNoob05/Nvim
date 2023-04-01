@@ -47,8 +47,13 @@ return require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'}, -- Optional
 		}
 	}
-    -- Indent line
+    --Indent line
     use "lukas-reineke/indent-blankline.nvim"
     -- commenting
     use 'preservim/nerdcommenter'
+    -- autopair brackets
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
 end)
