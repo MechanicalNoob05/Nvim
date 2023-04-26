@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>f", vim.cmd.Ex)
+vim.keymap.set("v", "<C-f>", vim.cmd.fold)
 
 --NERDCommenterToggle remap
 vim.api.nvim_set_keymap('n', '<C-/>', "<plug>NERDCommenterToggle", { noremap = true, silent = true });
