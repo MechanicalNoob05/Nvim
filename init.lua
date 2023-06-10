@@ -183,6 +183,7 @@ require('lazy').setup({
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  -- Auto pair Brackets
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -298,7 +299,7 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
-
+pcall(require('telescope').load_extension, 'projects')
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
@@ -312,16 +313,17 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ile [F]iles' })
-vim.keymap.set('n', '<leader>ft', '<Cmd>Neotree<CR>' , { desc = '[F]ile [T]ree' })
+vim.keymap.set('n', '<leader>f', '<Cmd>Neotree float<CR>' , { desc = '[F]ile' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- tab bar switch keys
-vim.keymap.set('n', '<A-l>', '<Cmd>BufferPrevious<CR>', { noremap=true, silent=true,desc='Previous tab'})
-vim.keymap.set('n', '<A-h>', '<Cmd>BufferNext<CR>', { noremap=true, silent=true, desc='Next tab'})
-vim.keymap.set('n', '<A-w>', '<Cmd>BufferClose<CR>', { noremap=true, silent=true, desc='Close tab'})
+vim.keymap.set('n', '<C-l>', '<Cmd>BufferPrevious<CR>', { noremap=true, silent=true,desc='Previous tab'})
+vim.keymap.set('n', '<C-h>', '<Cmd>BufferNext<CR>', { noremap=true, silent=true, desc='Next tab'})
+vim.keymap.set('n', '<C-w>', '<Cmd>BufferClose<CR>', { noremap=true, silent=true, desc='Close tab'})
+vim.keymap.set('n', '<leader>p', '<Cmd>Telescope projects<CR>', { noremap=true, silent=true, desc='Close tab'})
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
