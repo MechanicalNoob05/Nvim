@@ -339,7 +339,8 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<C-l>', '<Cmd>BufferPrevious<CR>', { noremap=true, silent=true,desc='Previous tab'})
 vim.keymap.set('n', '<C-h>', '<Cmd>BufferNext<CR>', { noremap=true, silent=true, desc='Next tab'})
 vim.keymap.set('n', '<C-w>', '<Cmd>BufferClose<CR>', { noremap=true, silent=true, desc='Close tab'})
-vim.keymap.set('n', '<leader>p', '<Cmd>Telescope projects<CR>', { noremap=true, silent=true, desc='Close tab'})
+vim.keymap.set('n', '<leader>pr', '<Cmd>Telescope projects<CR>', { noremap=true, silent=true, desc='Close tab'})
+vim.keymap.set('n', '<leader>p', '<Cmd>Telescope neoclip<CR>', { noremap=true, silent=true, desc='Close tab'})
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
