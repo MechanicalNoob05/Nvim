@@ -90,12 +90,6 @@ require('lazy').setup({
     },
   },
   {
-  "folke/tokyonight.nvim",
-  lazy = false,
-  priority = 1000,
-  opts = {},
-},
-  {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -134,12 +128,13 @@ require('lazy').setup({
     },
   },
 
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'catppuccin'
     end,
   },
   -- Tab bar at the top for names
@@ -247,7 +242,8 @@ vim.o.mouse = 'a'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+
+
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -339,8 +335,13 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<C-l>', '<Cmd>BufferPrevious<CR>', { noremap=true, silent=true,desc='Previous tab'})
 vim.keymap.set('n', '<C-h>', '<Cmd>BufferNext<CR>', { noremap=true, silent=true, desc='Next tab'})
 vim.keymap.set('n', '<C-w>', '<Cmd>BufferClose<CR>', { noremap=true, silent=true, desc='Close tab'})
-vim.keymap.set('n', '<leader>pr', '<Cmd>Telescope projects<CR>', { noremap=true, silent=true, desc='Close tab'})
-vim.keymap.set('n', '<leader>p', '<Cmd>Telescope neoclip<CR>', { noremap=true, silent=true, desc='Close tab'})
+vim.keymap.set('n', 'f', '<Cmd>Telescope projects<CR>', { noremap=true, silent=true, desc='Open Project Folders'})
+vim.keymap.set('n', '<leader>p', '<Cmd>Telescope neoclip<CR>', { noremap=true, silent=true, desc='neoclip'})
+
+
+
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>y", [["+Y]])
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
