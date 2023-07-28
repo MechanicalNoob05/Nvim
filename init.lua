@@ -56,7 +56,6 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
-
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
 --
@@ -137,7 +136,6 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -145,10 +143,36 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'horizon',
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_a = {
+          { 'mode', separator = { left = '' }, right_padding = 1 },
+        },
+        lualine_b = { 'filename', 'branch' },
+        lualine_c = { {
+          'datetime',
+          -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+          style = 'default'
+        } },
+        lualine_x = {},
+        lualine_y = { 'filetype', 'progress' },
+        lualine_z = {
+          { 'location', separator = { right = '' }, left_padding = 1 },
+        },
+      },
+      inactive_sections = {
+        lualine_a = { 'filename' },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'location' },
+      },
+      tabline = {},
+      extensions = {},
     },
   },
 
