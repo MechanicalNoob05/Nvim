@@ -61,6 +61,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
+--    Plugins block
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
@@ -245,6 +246,26 @@ vim.wo.number = true
 vim.o.mouse = 'a'
 
 
+-- Fold persistance
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local save_fold = augroup("Persistent Folds", { clear = true })
+autocmd("BufWinLeave", {
+  pattern = "*.*",
+  callback = function()
+    vim.cmd.mkview()
+  end,
+  group = save_fold,
+})
+autocmd("BufWinEnter", {
+  pattern = "*.*",
+  callback = function()
+    vim.cmd.loadview({ mods = { emsg_silent = true } })
+  end,
+  group = save_fold,
+})
+
+
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
@@ -279,10 +300,10 @@ vim.o.termguicolors = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Disable arrows in normal mode
-vim.keymap.set('n', '<Up>', '<Nop>', { silent = true })
-vim.keymap.set('n', '<Down>', '<Nop>', { silent = true })
-vim.keymap.set('n', '<Left>', '<Nop>', { silent = true })
-vim.keymap.set('n', '<Right>', '<Nop>', { silent = true })
+vim.keymap.set({'n','v'}, '<Up>', '<Nop>', { silent = true })
+vim.keymap.set({'n','v'}, '<Down>', '<Nop>', { silent = true })
+vim.keymap.set({'n','v'}, '<Left>', '<Nop>', { silent = true })
+vim.keymap.set({'n','v'}, '<Right>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -339,6 +360,8 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>' , { desc = '[L]azy git' })
+vim.keymap.set('n', '<C-l>', '<Cmd>BufferNext<CR>' , { desc = 'Next Buffer' })
+vim.keymap.set('n', '<C-l>', '<Cmd>BufferPrevious<CR>' , { desc = 'Previous Buffer' })
 
 -- Custom key bindings 
 vim.keymap.set('n', '<C-f>', '<Cmd>Neotree float<CR>' , { desc = '[F]ile' })
