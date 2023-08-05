@@ -120,7 +120,10 @@ require('lazy').setup({
         lualine_b = { 'filename', 'branch' },
         lualine_c = { },
         lualine_x = {},
-        lualine_y = { 'filetype', 'progress' },
+        lualine_y = { 'filetype', 'progress',{
+          'searchcount',
+          timeout = 500,
+        } },
         lualine_z = {
           { 'datetime',style='%I:%M', separator = { right = '' }, left_padding = 1 },
         },
