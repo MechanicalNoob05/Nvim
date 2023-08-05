@@ -96,11 +96,10 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'catppuccin/nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'catppuccin'
     end,
   },
   {
@@ -110,7 +109,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'horizon',
+        theme = 'nightfly',
         component_separators = '|',
         section_separators = '',
       },
@@ -119,15 +118,11 @@ require('lazy').setup({
           { 'mode', separator = { left = '' }, right_padding = 1 },
         },
         lualine_b = { 'filename', 'branch' },
-        lualine_c = { {
-          'datetime',
-          -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-          style = 'default'
-        } },
+        lualine_c = { },
         lualine_x = {},
         lualine_y = { 'filetype', 'progress' },
         lualine_z = {
-          { 'location', separator = { right = '' }, left_padding = 1 },
+          { 'datetime',style='%I:%M', separator = { right = '' }, left_padding = 1 },
         },
       },
       inactive_sections = {
