@@ -96,10 +96,10 @@ require('lazy').setup({
   },
 
   {
-    'catppuccin/nvim',
+    'rose-pine/neovim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'catppuccin'
+      vim.cmd.colorscheme 'rose-pine-moon'
     end,
   },
   {
@@ -151,7 +151,15 @@ require('lazy').setup({
       show_trailing_blankline_indent = false,
     },
   },
-
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    config = true,
+  },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
