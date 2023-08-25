@@ -47,16 +47,15 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
   },
   {
-    'christoomey/vim-tmux-navigator'
+    'ryanoasis/vim-devicons'
   },
-
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -74,7 +73,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -88,7 +87,8 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -118,14 +118,14 @@ require('lazy').setup({
           { 'mode', separator = { left = '' }, right_padding = 1 },
         },
         lualine_b = { 'filename', 'branch' },
-        lualine_c = { },
+        lualine_c = {},
         lualine_x = {},
-        lualine_y = { 'filetype', 'progress',{
+        lualine_y = { 'filetype', 'progress', {
           'searchcount',
           timeout = 500,
         } },
         lualine_z = {
-          { 'datetime',style='%I:%M', separator = { right = '' }, left_padding = 1 },
+          { 'datetime', style = '%I:%M', separator = { right = '' }, left_padding = 1 },
         },
       },
       inactive_sections = {
@@ -161,7 +161,7 @@ require('lazy').setup({
     config = true,
   },
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',         opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -259,18 +259,18 @@ vim.o.termguicolors = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Disable arrows in normal mode
-vim.keymap.set({'n','v'}, '<Up>', '<Nop>', { silent = true })
-vim.keymap.set({'n','v'}, '<Down>', '<Nop>', { silent = true })
-vim.keymap.set({'n','v'}, '<Left>', '<Nop>', { silent = true })
-vim.keymap.set({'n','v'}, '<Right>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Up>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Down>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Left>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Right>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Maping keys to move block up or down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv",{desc= "move me down daddy"})
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv",{desc= "move me up daddy"})
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move me down daddy" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move me up daddy" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -318,23 +318,20 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>' , { desc = '[L]azy git' })
-vim.keymap.set('n', '<C-l>', '<Cmd>BufferNext<CR>' , { desc = 'Next Buffer' })
-vim.keymap.set('n', '<C-l>', '<Cmd>BufferPrevious<CR>' , { desc = 'Previous Buffer' })
+vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>', { desc = '[L]azy git' })
 
--- Custom key bindings 
-vim.keymap.set('n', '<C-f>', '<Cmd>Neotree float<CR>' , { desc = '[F]ile' })
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]],{desc= 'yank me daddy'})
-vim.keymap.set("n", "<leader>y", [["+Y]],{desc= 'yank me daddy'})
-vim.keymap.set('n', '<C-p>', '<Cmd>Telescope neoclip<CR>', { noremap=true, silent=true, desc='neoclip'})
+-- Custom key bindings
+vim.keymap.set('n', '<leader>f', '<Cmd>Explore<CR>', { desc = '[F]ile' })
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = 'yank me daddy' })
+vim.keymap.set("n", "<leader>y", [["+Y]], { desc = 'yank me daddy' })
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = false,
+  auto_install = true,
 
   highlight = { enable = true },
   indent = { enable = true },
@@ -543,4 +540,3 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
