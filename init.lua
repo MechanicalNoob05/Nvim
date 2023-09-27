@@ -99,46 +99,8 @@ require('lazy').setup({
     'rose-pine/neovim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'rose-pine-moon'
+      vim.cmd.colorscheme 'rose-pine'
     end,
-  },
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'nightfly',
-        component_separators = '|',
-        section_separators = '',
-      },
-      sections = {
-        lualine_a = {
-          { 'mode', separator = { left = '' }, right_padding = 1 },
-        },
-        lualine_b = { 'filename', 'branch' },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { 'filetype', 'progress', {
-          'searchcount',
-          timeout = 500,
-        } },
-        lualine_z = {
-          { 'datetime', style = '%I:%M', separator = { right = '' }, left_padding = 1 },
-        },
-      },
-      inactive_sections = {
-        lualine_a = { 'filename' },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { 'location' },
-      },
-      tabline = {},
-      extensions = {},
-    },
   },
 
   {
@@ -289,7 +251,6 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
-pcall(require('telescope').load_extension, 'neoclip')
 pcall(require('telescope').load_extension, 'lazygit')
 
 -- See `:help telescope.builtin`
@@ -319,7 +280,7 @@ vim.keymap.set("n", "<leader>y", [["+Y]], { desc = 'yank me daddy' })
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript' },
+  ensure_installed = { },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
