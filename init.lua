@@ -102,17 +102,33 @@ require('lazy').setup({
       vim.cmd.colorscheme 'rose-pine'
     end,
   },
-
   {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          show_hidden_count = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_name = {
+            '.git',
+            -- '.DS_Store',
+            -- 'thumbs.db',
+          },
+          never_show = {},
+        },
+      }
+    }
   },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim',         opts = {} },
 
@@ -131,6 +147,15 @@ require('lazy').setup({
       return vim.fn.executable 'make' == 1
     end,
   },
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    config = true,
+},
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -273,7 +298,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>', { desc = '[L]azy git' })
 
 -- Custom key bindings
-vim.keymap.set('n', '<leader>f', '<Cmd>Explore<CR>', { desc = '[F]ile' })
+vim.keymap.set('n', '<leader>f', '<Cmd>Neotree float<CR>', { desc = '[F]ile' })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = 'yank me daddy' })
 vim.keymap.set("n", "<leader>y", [["+Y]], { desc = 'yank me daddy' })
 -- [[ Configure Treesitter ]]
