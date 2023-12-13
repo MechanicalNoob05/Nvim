@@ -299,6 +299,8 @@ vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>', { desc = '[L]azy git' })
 
 -- Custom key bindings
 vim.keymap.set('n', '<leader>f', '<Cmd>Neotree float<CR>', { desc = '[F]ile' })
+vim.keymap.set('n', '<leader>no', '<Cmd>Neorg index<CR>', { desc = '[N]eOrg Index' })
+vim.keymap.set('n', '<leader>nc', '<Cmd>Neorg return<CR>', { desc = '[N]eOrg Return' })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = 'yank me daddy' })
 vim.keymap.set("n", "<leader>y", [["+Y]], { desc = 'yank me daddy' })
 -- [[ Configure Treesitter ]]
