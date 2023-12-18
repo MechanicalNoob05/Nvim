@@ -94,12 +94,11 @@ require('lazy').setup({
       end,
     },
   },
-
   {
-    'rose-pine/neovim',
+    'rebelot/kanagawa.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.colorscheme 'kanagawa-wave'
     end,
   },
   {
@@ -295,9 +294,9 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>', { desc = '[L]azy git' })
 
 -- Custom key bindings
+vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>', { desc = '[L]azy git' })
 vim.keymap.set('n', '<leader>f', '<Cmd>Neotree float<CR>', { desc = '[F]ile' })
 vim.keymap.set('n', '<leader>no', '<Cmd>Neorg index<CR>', { desc = '[N]eOrg Index' })
 vim.keymap.set('n', '<leader>nc', '<Cmd>Neorg return<CR>', { desc = '[N]eOrg Return' })
@@ -307,6 +306,9 @@ vim.keymap.set("n", "<leader>y", [["+Y]], { desc = 'yank me daddy' })
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
+  sync_install= true,
+  ignore_install={},
+  modules={},
   ensure_installed = { },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -477,6 +479,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 cmp.setup {
+  enabled=true,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
