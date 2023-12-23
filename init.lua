@@ -51,6 +51,7 @@ require('lazy').setup({
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
+      "nvim-telescope/telescope-ui-select.nvim",
     },
   },
   {
@@ -73,7 +74,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim',                opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -127,12 +128,12 @@ require('lazy').setup({
       }
     }
   },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl",     opts = {} },
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',         opts = {} },
+  { 'numToStr/Comment.nvim',               opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim',       branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -146,15 +147,6 @@ require('lazy').setup({
       return vim.fn.executable 'make' == 1
     end,
   },
-  {
-    'akinsho/flutter-tools.nvim',
-    lazy = false,
-    dependencies = {
-        'nvim-lua/plenary.nvim',
-        'stevearc/dressing.nvim', -- optional for vim.ui.select
-    },
-    config = true,
-},
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -276,6 +268,7 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'lazygit')
+pcall(require('telescope').load_extension, 'ui-select')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -298,18 +291,16 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- Custom key bindings
 vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>', { desc = '[L]azy git' })
 vim.keymap.set('n', '<leader>f', '<Cmd>Neotree float<CR>', { desc = '[F]ile' })
-vim.keymap.set('n', '<leader>no', '<Cmd>Neorg index<CR>', { desc = '[N]eOrg Index' })
-vim.keymap.set('n', '<leader>nc', '<Cmd>Neorg return<CR>', { desc = '[N]eOrg Return' })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = 'yank me daddy' })
 vim.keymap.set("n", "<leader>y", [["+Y]], { desc = 'yank me daddy' })
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  sync_install= true,
-  ignore_install={},
-  modules={},
-  ensure_installed = { },
+  sync_install = true,
+  ignore_install = {},
+  modules = {},
+  ensure_installed = {},
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
@@ -479,7 +470,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 cmp.setup {
-  enabled=true,
+  enabled = true,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
