@@ -291,7 +291,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 -- Custom key bindings
 vim.keymap.set('n', '<leader>l', '<Cmd>LazyGit<CR>', { desc = '[L]azy git' })
-vim.keymap.set('n', '<leader>f', '<Cmd>Neotree toggle<CR>', { desc = '[F]ile' })
+vim.keymap.set('n', '<leader>f', '<Cmd>Neotree float<CR>', { desc = '[F]ile' })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = 'yank me daddy' })
 vim.keymap.set("n", "<leader>y", [["+Y]], { desc = 'yank me daddy' })
 -- [[ Configure Treesitter ]]
